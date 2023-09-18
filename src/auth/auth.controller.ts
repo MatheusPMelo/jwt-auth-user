@@ -9,6 +9,7 @@ import {
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-atuth.guard';
 import { AuthRequest } from './models/AuthRequest';
+import { User } from 'src/user/entities/user.entity';
 
 @Controller()
 export class AuthController {
@@ -20,6 +21,6 @@ export class AuthController {
   async login(@Request() req: AuthRequest) {
     console.log(req.user);
 
-    return 'faz login';
+    return this.authService.login(req.user);
   }
 }
