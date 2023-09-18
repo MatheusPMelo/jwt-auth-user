@@ -1,6 +1,8 @@
 import { Controller, Post, Body, Get, Param, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { CurrentUser } from 'src/auth/decorators/current-user-decorator';
+import { User } from './entities/user.entity';
 
 @Controller('user')
 export class UserController {
@@ -9,6 +11,11 @@ export class UserController {
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
+  }
+
+  @Get('me')
+  getMe(@CurrentUser() user: User) {
+    return user;
   }
 
   @Get()

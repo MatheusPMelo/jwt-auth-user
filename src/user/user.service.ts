@@ -51,7 +51,6 @@ export class UserService {
   }
 
   async delete(id: number): Promise<User> {
-    console.log(id);
     const userExists = await this.prisma.user.findFirst({
       where: {
         id: id,
